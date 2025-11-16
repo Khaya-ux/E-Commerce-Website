@@ -22,7 +22,7 @@ const Navbar = () => {
         <div className={`bg-neutral-200 h-screen p-5 pt-8 ${open ? "w-72" : "w-20"} duration-300 relative`}>
             {open ? (
     <IoMdClose 
-        className='text-black text-3xl absolute right-7 top-24 cursor-pointer'
+        className='text-black text-3xl absolute -translate-x-1/2 top-24 cursor-pointer'
         onClick={() => setOpen(!open)}
     />
       ) : (
@@ -47,7 +47,7 @@ const Navbar = () => {
                                ${menu.title === "Logout" 
                                ? "hover:bg-red-500 hover:text-white" 
                                : "hover:bg-black hover:text-white"} 
-                                rounded-md ${menu.spacing ? "mt-64" : "mt-2"} mt-2`}>
+                                rounded-md ${menu.spacing ? "mt-64" : "mt-2"}`}>
                         <span className='text-2xl block float-left'>
                             {menu.icon ? menu.icon : <IoStorefrontSharp />}
                         </span>
