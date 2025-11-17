@@ -1,11 +1,16 @@
-import React from "react";
-import "./index.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CartPage from "./components/CartPage";
+import CheckoutForm from "./components/CheckoutForm";
 
 function App() {
   return (
-    <div>
-      <h1>Hi</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<div>Home Page</div>} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/checkout" element={<CheckoutForm />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
