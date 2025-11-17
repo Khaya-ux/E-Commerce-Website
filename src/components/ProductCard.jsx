@@ -5,14 +5,20 @@ function ProductCard({ product }){
   return (
     // Link makes it responsive so that when clicked, it goes to product description
     <Link to={`/product/${product.id}`}>
-    <div className='shadow-lg rounded-md cursor-pointer'>
-      <img src={product.image} alt="" />
-      <div className='bg-gray-50 p-4'>
-        <h2 className='text-lg font-semibold my-4'>{product.title}</h2>
-        <p className='text-sm text-zinc-500 border-b-2 pb-4'>{product.description}</p>
-        <div className='flex justify-between mt-4 items-center'>
-          <p className='text-xl font-semibold'>${product.price}</p>
-          <p>View Details</p>
+    <div className='bg-white rounded-2xl p-6 hover:shadow-xl transition-shadow'>
+      {/* The product */}
+      <img src={product.image} alt="" className='w-full h-48 object-contain mb-4' />
+      <div className='space-y-2'>
+        <h2 className='text-xl font-semibold'>{product.title}</h2>
+        <p className='text-sm text-gray-500'>{product.category}</p>
+        <div className='flex justify-between items-center pt-4'>
+          <p className='text-2xl font-semibold'>${product.price}</p>
+
+          {/* The Cart Logic will be added to this button */}
+          <button className='bg-black text-white p-3 rounded-xl hover:bg-gray-800 transition-colors'>
+            <Handbag className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" />
+            
+          </button>
         </div>
       </div>
     </div>

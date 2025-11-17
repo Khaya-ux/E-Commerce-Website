@@ -10,6 +10,7 @@ function ProductDetail() {
 // to match id details
     const product = products.find((p) => p.id === parseInt(id));
 
+    // When there is no product it will display product not found
     if(!product){
         return <div className="container mx-auto px-4 py-8">
             <div className="text-center">
@@ -19,44 +20,76 @@ function ProductDetail() {
         </div>
     }
 
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <div>
-        <Link to="/" className="mb-8 inline-block">
+   return (
+    <div className="bg-gray-100 min-h-screen p-8">
+      <div className="max-w-7xl mx-auto">
+        <Link to="/" className="mb-8 inline-flex items-center gap-2 text-lg">
+          <ChevronLeft className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" />  
           Back
         </Link>
       </div>
 
       {/* The grid on how the layout is */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        <div className="shadow-md p-4 rounded w-full max-w-[600px]">
-          {/* The image of the product, to the person styling:please resize image to make it not to big and fit right */}
-          <img src={product.image} alt={product.title} className="w-full h-auto" />
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 mt-8">
+        <div className="flex flex-col gap-4">
+          <div className="bg-white p-8 rounded-3xl">
+            {/* The image of the product and the 3 other small images */}
+            <img src={product.image} alt={product.title} className="w-full h-96 object-contain" />
+          </div>
+          <div className="flex gap-4">
+            <div className="bg-white p-4 rounded-2xl w-20 h-20 flex items-center justify-center">
+              <img src={product.image} alt="" className="w-full h-full object-contain" />
+            </div>
+            <div className="bg-white p-4 rounded-2xl w-20 h-20 flex items-center justify-center">
+              <img src={product.image} alt="" className="w-full h-full object-contain" />
+            </div>
+            <div className="bg-white p-4 rounded-2xl w-20 h-20 flex items-center justify-center">
+              <img src={product.image} alt="" className="w-full h-full object-contain" />
+            </div>
+          </div>
         </div>
 
-        {/* The product Title, Price and Description */}
+        {/* The product Title, Price, Category and Description */}
         <div>
             {/* Product Title */}
-          <h1 className="text-3xl font-bold mb-4">{product.title}</h1>
+          <h1 className="text-5xl font-bold mb-2">{product.title}</h1>
           {/* Product Category */}
-          <p className="text-gray-600 mb-6">{product.category}</p>
-          {/* Product Price */}
-          <div className="mb-6">
-            <span className="text-3xl font-bold">${product.price}</span>
-             {/* Product Description */}
-          <p className="text-gray-600 mb-6">{product.description}</p>
+          <p className="text-gray-400 text-xl mb-4">{product.category}</p>
+          
+         <div className="flex items-center gap-2 mb-4">
+            {/* used Windows Character Map for the star icons, to get them you can press Windows key + R  */}
+            <div className="flex text-teal-700 text-3xl">
+              <span>★</span>
+              <span>★</span>
+              <span>★</span>
+              <span>★</span>
+              <span className="text-gray-300">★</span>
+            </div>
+            <span className="text-teal-700 text-3xl">4.5 / 5</span>
           </div>
 
+          {/* Product Price */}
+          <div className="mb-6">
+            <span className="text-4xl font-bold">${product.price}</span>
+          </div>
+          
+          {/* Product Description */}
+          <p className="text-gray-600 mb-8 leading-relaxed">{product.description}</p>
+
           {/* The Add to bag Button */}
-          <button className="w-full md:w-auto bg-zinc-200 px-8 py-3 rounded-md flex items-center justify-center gap-2 hover:bg-zinc-300">
-            <ShoppingBag /> Add to bag
+          {/* The Cart Logic will be added to this button */}
+          <button className="bg-black text-white px-8 py-4 rounded-2xl flex items-center justify-center gap-2 hover:bg-gray-800">
+            <ShoppingBag /> Add to Bag
           </button>
         </div>
-        <div className="">
-          {/* Description, to the person styling: It needs to be centered and add a top border line with light gray, for example: border-gray-400 */}
-          <h1 className="text-2xl font-bold mb-4">Description</h1>
-          <p className="text-gray-600 mb-6">Discover a premium selection of modern tech designed to elevate your everyday life — from powerful smartphones to stylish wearables and high-quality audio gear. Each product in our collection has been carefully chosen for its exceptional performance, reliability, and sleek aesthetic that suits any lifestyle. Whether you're upgrading to a faster iPhone with stunning cameras and impressive battery life, stepping into the world of smart convenience with an Apple Watch designed to keep you connected and active, or immersing yourself in rich, detailed sound with lightweight Sony headphones, our range offers the perfect combination of innovation and comfort. Built to deliver seamless efficiency, these devices blend advanced technology with user-friendly design, making them ideal for work, entertainment, fitness, and everyday connectivity. No matter which device you choose, you’re selecting a product crafted to enhance productivity, simplify your routines, and complement your personal style with elegance and durability.</p>
-        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto mt-16">
+        {/* The gray line */}
+        <hr className="border-gray-700/50 border-t-4 mb-8" />
+        {/* Description */}
+        <h1 className="text-3xl font-bold mb-6">Description</h1>
+        <p className="text-gray-600 leading-relaxed">Discover a premium selection of modern tech designed to elevate your everyday life — from powerful smartphones to stylish wearables and high-quality audio gear. Each product in our collection has been carefully chosen for its exceptional performance, reliability, and sleek aesthetic that suits any lifestyle. Whether you're upgrading to a faster iPhone with stunning cameras and impressive battery life, stepping into the world of smart convenience with an Apple Watch designed to keep you connected and active, or immersing yourself in rich, detailed sound with lightweight Sony headphones, our range offers the perfect combination of innovation and comfort. Built to deliver seamless efficiency, these devices blend advanced technology with user-friendly design, making them ideal for work, entertainment, fitness, and everyday connectivity. No matter which device you choose, you're selecting a product crafted to enhance productivity, simplify your routines, and complement your personal style with elegance and durability.</p>
       </div>
     </div>
   );
