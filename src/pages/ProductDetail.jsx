@@ -2,12 +2,23 @@ import { ShoppingBag } from "lucide-react";
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import products from "../productsContent";
+import { ChevronLeft } from "lucide-react";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../features/cart/cartSlice";
 
 function ProductDetail() {
   const { id } = useParams();
 
+  //talk to redux
+  const dispatch = useDispatch();
+
   // to match id details
   const product = products.find((p) => p.id === parseInt(id));
+
+  //mr dispatch to add to cart
+  const handleAdd = () => {
+    dispatch(addToCart(product)); // <-- reducer will merge/update quantity
+  };
 
   // When there is no product it will display product not found
   if (!product) {
@@ -104,7 +115,10 @@ function ProductDetail() {
 
           {/* The Add to bag Button */}
           {/* The Cart Logic will be added to this button */}
-          <button className="bg-black text-white px-8 py-4 rounded-2xl flex items-center justify-center gap-2 hover:bg-gray-800">
+          <button
+            onClick={handleAdd}
+            className="bg-black text-white px-8 py-4 rounded-2xl flex items-center justify-center gap-2 hover:bg-gray-800"
+          >
             <ShoppingBag /> Add to Bag
           </button>
         </div>
