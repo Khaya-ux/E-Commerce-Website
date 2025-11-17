@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import { Link } from "react-router-dom";
 import React from 'react';
 import { IoMdClose } from "react-icons/io";
 import { IoMenu } from "react-icons/io5";
@@ -8,13 +9,13 @@ import { IoBagHandle } from "react-icons/io5";
 import { TbLogout } from "react-icons/tb";
 import { FaRegHeart } from "react-icons/fa";
 
-const Navbar = () => {
+const Sidebar = () => {
     const [open, setOpen] =useState(true);
     const Menus = [
-        {title: "Store"},
-        {title: "Favorite", icon: <FaRegHeart />},
-        {title: "Bag", icon: <IoBagHandle />},
-        {title: "Logout", spacing: true, icon: <TbLogout />},
+        {title: "Store", path: "/"},
+        {title: "Favorite", icon: <FaRegHeart />, path: "/favorite"  },
+        {title: "Bag", icon: <IoBagHandle />, path: "/bag" },
+        {title: "Logout", spacing: true, icon: <TbLogout />, path: "/logout"},
     ];
 
   return (
@@ -48,14 +49,15 @@ const Navbar = () => {
                                ? "hover:bg-red-500 hover:text-white" 
                                : "hover:bg-black hover:text-white"} 
                                 rounded-md ${menu.spacing ? "mt-64" : "mt-2"}`}>
+                    <Link  to={menu.path} className="flex items-center gap-x-4 w-full">
                         <span className='text-2xl block float-left'>
                             {menu.icon ? menu.icon : <IoStorefrontSharp />}
                         </span>
                         <span className={`text-base font-medium flex-1 duration-200 ${!open && "hidden"}`}>
                             {menu.title}
                         </span>
+                        </Link>
                     </li>
-                    
                     </>
                 ))}
             </ul>
@@ -63,4 +65,4 @@ const Navbar = () => {
     </div>
   )
 }
-export default Navbar;
+export default Sidebar;
