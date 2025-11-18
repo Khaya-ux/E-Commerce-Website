@@ -1,9 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import products from "../productsContent";
 import { Handbag } from "lucide-react";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../features/cart/cartSlice";
 
 function ProductCard({ product }) {
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    dispatch(
+      addToCart({
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        image: product.image,
+      })
+    );
+  };
+
   return (
     // Link makes it responsive so that when clicked, it goes to product description
     <Link to={`/product/${product.id}`}>
@@ -11,7 +28,7 @@ function ProductCard({ product }) {
         {/* The product */}
         <img
           src={product.image}
-          alt=""
+          alt={product.title}
           className="w-full h-48 object-contain mb-4"
         />
         <div className="space-y-2">
@@ -21,7 +38,12 @@ function ProductCard({ product }) {
             <p className="text-2xl font-semibold">${product.price}</p>
 
             {/* The Cart Logic will be added to this button */}
-            <button className="bg-black text-white p-3 rounded-xl hover:bg-gray-800 transition-colors">
+            <button
+              type="button"
+              onClick={handleAddToCart}
+              className="bg-black text-white p-3 rounded-xl hover:bg-gray-800 transition-colors"
+              aria-label={`Add ${product.title} to bag`}
+            >
               <Handbag
                 className="h-5 w-5"
                 fill="none"
