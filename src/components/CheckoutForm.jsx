@@ -104,20 +104,16 @@ function CheckoutForm() {
       return;
     }
 
-    // Simulate order placement
     const orderNum =
       "ORD-" + Math.random().toString(36).substr(2, 9).toUpperCase();
     setOrderNumber(orderNum);
     setOrderPlaced(true);
 
-    // Clear cart after successful order
     dispatch(clearCart());
 
-    // In real app, you would send data to backend here
     console.log("Order placed:", { formData, items, totalAmount });
   };
 
-  // If order is placed, show success message
   if (orderPlaced) {
     return (
       <div className="max-w-2xl mx-auto p-6">
